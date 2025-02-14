@@ -8,6 +8,10 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Backend is running! Available routes: /scrape-profile");
+});
+
 app.get("/scrape-profile", async (req, res) => {
   console.log("Scraping profile...");
   const profileData = await scrapeProfile();
