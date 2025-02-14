@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import scrape from "./backend/scrape.js";
 
 export default function BioData() {
   const [url, setUrl] = useState("");
