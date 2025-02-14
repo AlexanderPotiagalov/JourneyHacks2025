@@ -1,10 +1,10 @@
 import { Builder, By, until } from "selenium-webdriver";
 
-async function scrapeProfile() {
+async function scrapeProfile(url) {
   let driver = await new Builder().forBrowser("chrome").build();
 
   try {
-    await driver.get("https://tinder.com");
+    await driver.get(toString(url));
 
     await driver.wait(
       until.elementLocated(By.xpath("//button[contains(text(),'Log in')]")),
