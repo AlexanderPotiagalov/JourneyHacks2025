@@ -1,5 +1,5 @@
 import { Builder, By, until } from "selenium-webdriver";
-
+import fs from 'fs';
 async function scrapeProfile(url) {
   let driver = await new Builder().forBrowser("chrome").build();
 
@@ -24,12 +24,16 @@ async function scrapeProfile(url) {
     let age = await driver.findElement(By.css(".profileCard__age")).getText();
     let bio = await driver.findElement(By.css(".profileCard__bio")).getText();
 
-    return {
+    let profileData = {
       name: name.trim(),
       age: parseInt(age, 10),
       bio: bio.trim(),
       scraped_at: new Date().toISOString(),
     };
+
+    fs.writeFileSync("profile.json", JSON.stringify(profileData, null, 2));
+
+    return profileData;
   } catch (error) {
     console.error("An error occurred:", error);
     return { error: "Failed to scrape profile" };
