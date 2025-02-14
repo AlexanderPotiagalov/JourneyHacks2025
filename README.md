@@ -7,6 +7,7 @@ react.js for our frontend
 node.js for our backend
 selenium for our webscraping
 <insert NLP> for our sentiment analyzer
+iMazing for transferring iOS messages to a pdf
 
 # dependencies 
 
