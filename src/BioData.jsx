@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function BioData() {
-  const [bio, setBio] = useState("");
+  const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -11,7 +11,7 @@ export default function BioData() {
     setError(null);
     try {
       const response = await axios.get("http://localhost:5000/scrape-profile");
-      setBio(response.data.bio);
+      setProfile(response.data);
     } catch (error) {
       console.error("Error fetching bio data:", error);
       setError("Failed to retrieve profile data. Try again later.");
@@ -29,10 +29,16 @@ export default function BioData() {
       >
         {loading ? "Fetching..." : "Get Bio Data"}
       </button>
-      {bio && (
+      {profile && (
         <div className="mt-4 p-3 border rounded bg-white shadow">
           <p>
-            <strong>Scraped Bio:</strong> {bio}
+            <strong>Name:</strong> {profile.name}
+          </p>
+          <p>
+            <strong>Age:</strong> {profile.age}
+          </p>
+          <p>
+            <strong>Scraped Bio:</strong> {profile.bio}
           </p>
         </div>
       )}
