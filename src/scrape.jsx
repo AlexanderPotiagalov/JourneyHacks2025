@@ -1,10 +1,10 @@
 const { Builder, By, until } = require('selenium-webdriver');
 
-(async function scrape(){
+(async function scrape(url) {
     let driver = await new Builder().forBrowser('chrome').build();
 
     try {
-        await driver.get('https://tinder.com');
+        await driver.get(toString(url));
 
         await driver.wait(until.elementLocated(By.xpath("//button[contains(text(),'Log in')]")), 10000);
         let loginButton = await driver.findElement(By.xpath("//button[contains(text(), 'Log in')]"));
