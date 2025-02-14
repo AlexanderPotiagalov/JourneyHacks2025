@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
   // State for user inputs
@@ -6,6 +7,8 @@ export default function Homepage() {
   const [age, setAge] = useState("");
   const [interests, setInterests] = useState("");
   const [message, setMessage] = useState(""); // State for success message
+
+  const navigate = useNavigate(); // Initialize navigate
 
   // Load data from Local Storage on component mount
   useEffect(() => {
@@ -36,8 +39,10 @@ export default function Homepage() {
     setAge("");
     setInterests("");
 
-    // Remove message after 3 seconds
-    setTimeout(() => setMessage(""), 3000);
+    // Redirect to /biodata
+    setTimeout(() => {
+      navigate("/biodata");
+    }, 1000);
   };
 
   return (
@@ -70,7 +75,7 @@ export default function Homepage() {
         onClick={handleSave}
         className="bg-blue-500 text-white px-4 py-2 rounded"
       >
-        Save Details
+        Save & Continue
       </button>
     </div>
   );
