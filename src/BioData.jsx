@@ -2,11 +2,16 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function BioData() {
+  const [url, setUrl] = useState("");
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchBioData = async () => {
+    if (!url) {
+      setError("Please enter a valid profile URL.");
+      return;
+    }
     setLoading(true);
     setError(null);
     try {
@@ -22,6 +27,14 @@ export default function BioData() {
   return (
     <div className="flex flex-col items-center gap-4 p-4 w-full max-w-lg">
       <h1 className="text-2xl font-bold text-blue-600">🔍 Bio Data Scraper</h1>
+      {/* ✅ Input field for user to enter profile URL */}
+      <input
+        type="text"
+        placeholder="Enter profile URL"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+        className="p-2 border rounded w-full"
+      />
       <button
         className="bg-green-500 text-white px-4 py-2 rounded"
         onClick={fetchBioData}
