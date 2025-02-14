@@ -19,11 +19,12 @@ export default function BioData() {
     try {
       // ✅ Send the URL to the backend via POST request
       const response = await axios.post(
-        "http://localhost:5000/scrape-profile",
+        "http://localhost:7001/scrape-profile",
         { url }
       );
 
       setProfile(response.data);
+      console.log(url);
     } catch (error) {
       console.error("Error fetching bio data:", error);
       setError("Failed to retrieve profile data. Try again later.");

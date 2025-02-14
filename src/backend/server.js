@@ -3,12 +3,16 @@ import cors from "cors";
 import scrapeProfile from "./scrape.js";
 
 const app = express();
-const PORT = 5000;
+const PORT = 7002;
 
 app.use(cors());
 app.use(express.json()); // ✅ Enable JSON request body parsing
 
 // ✅ Accept POST request with the profile URL
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the Bio Data Scraper API");
+});
 app.post("/scrape-profile", async (req, res) => {
   const { url } = req.body;
 

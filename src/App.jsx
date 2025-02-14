@@ -7,7 +7,7 @@ import {
 import Homepage from "./pages/Homepage.jsx";
 
 import MainLayout from "./layouts/MainLayout.jsx";
-import BioData from "./BioData.jsx";
+import BioData from "./pages/BioData.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>

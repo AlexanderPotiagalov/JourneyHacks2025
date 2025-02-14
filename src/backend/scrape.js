@@ -9,7 +9,7 @@ async function scrapeProfile(profileURL) {
 
     await driver.wait(
       until.elementLocated(By.css(".profileCard__card")),
-      15000
+      600000
     );
 
     let name = await driver.findElement(By.css(".profileCard__name")).getText();
@@ -26,7 +26,7 @@ async function scrapeProfile(profileURL) {
     console.error("An error occurred:", error);
     return { error: "Failed to scrape profile" };
   } finally {
-    await driver.quit();
+    // await driver.quit();
   }
 }
 
