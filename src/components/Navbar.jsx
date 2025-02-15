@@ -19,7 +19,9 @@ export default function Navbar() {
           <NavItem to="/red-flags" emoji="🚩" text="Red Flags" />
           <NavItem to="/history" emoji="📜" text="History" />
           <NavItem to="/pickup-lines" emoji="💬" text="Pickup Lines" />
-          <NavItem to="/gifts" emoji="🎁" text="Gift Ideas" />
+          <NavItem to="/gift-ideas" emoji="🎁" text="Gift Ideas" />
+          <NavItem to="/date-ideas" emoji="❤️" text="Date Ideas" />{" "}
+          {/* ✅ Added Date Ideas */}
         </div>
       </div>
     </nav>
