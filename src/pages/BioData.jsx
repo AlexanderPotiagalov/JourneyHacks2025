@@ -1,35 +1,36 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 
 export default function BioData() {
   const [url, setUrl] = useState("");
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Initialize navigation
 
   const fetchBioData = async () => {
     if (!url.trim()) {
-      setError("Please enter a validdd profile URL.");
+      setError("Please enter a valid profile URL.");
       return;
     }
-
     setLoading(true);
     setError(null);
-
     try {
-      // ✅ Send the URL to the backend via POST request
       const response = await axios.post(
-        "http://localhost:7001/scrape-profile",
-        { url }
+        "http://localhost:7002/scrape-profile",
+        {
+          url,
+        }
       );
-
       setProfile(response.data);
-      console.log(url);
+
+      // Redirect to PerspectiveAnalysis page with profile data
+      navigate("/perspective-analysis", { state: { profile: response.data } });
     } catch (error) {
       console.error("Error fetching bio data:", error);
       setError("Failed to retrieve profile data. Try again later.");
     }
-
     setLoading(false);
   };
 
@@ -38,8 +39,6 @@ export default function BioData() {
       <h1 className="text-2xl font-bold text-blue-600">
         🔍 Tinder Profile Scraper
       </h1>
-
-      {/* ✅ Input field for user to enter profile URL */}
       <input
         type="text"
         placeholder="Enter Tinder profile URL"
@@ -47,7 +46,6 @@ export default function BioData() {
         onChange={(e) => setUrl(e.target.value)}
         className="p-2 border rounded w-full"
       />
-
       <button
         className="bg-green-500 text-white px-4 py-2 rounded"
         onClick={fetchBioData}
@@ -55,21 +53,6 @@ export default function BioData() {
       >
         {loading ? "Scraping..." : "Get Bio Data"}
       </button>
-
-      {profile && (
-        <div className="mt-4 p-3 border rounded bg-white shadow">
-          <p>
-            <strong>Name:</strong> {profile.name}
-          </p>
-          <p>
-            <strong>Age:</strong> {profile.age}
-          </p>
-          <p>
-            <strong>Bio:</strong> {profile.bio}
-          </p>
-        </div>
-      )}
-
       {error && <p className="text-red-600">{error}</p>}
     </div>
   );
