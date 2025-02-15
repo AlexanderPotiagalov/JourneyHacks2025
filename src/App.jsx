@@ -13,6 +13,7 @@ import PickupLines from "./pages/PickupLines.jsx";
 import GiftIdeas from "./pages/GiftIdeas.jsx";
 import DateIdeas from "./pages/DateIdeas.jsx";
 import RedFlags from "./pages/PerspectiveAnalysis.jsx"; // Renamed PerspectiveAnalysis to RedFlags
+import TextAnalyzer from "./pages/Textananalyser.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="/pickup-lines" element={<PickupLines />} />
       <Route path="/gift-ideas" element={<GiftIdeas />} />
       <Route path="/date-ideas" element={<DateIdeas />} />
+      <Route path="/text-analyse" element={<TextAnalyzer />} />
     </Route>
   )
 );

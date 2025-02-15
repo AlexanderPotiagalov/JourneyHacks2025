@@ -21,6 +21,7 @@ export default function Navbar() {
           <NavItem to="/pickup-lines" emoji="💬" text="Pickup Lines" />
           <NavItem to="/gift-ideas" emoji="🎁" text="Gift Ideas" />
           <NavItem to="/date-ideas" emoji="❤️" text="Date Ideas" />{" "}
+          <NavItem to="/text-analyse" emoji="❤️" text="Date Ideas" />{" "}
           {/* ✅ Added Date Ideas */}
         </div>
       </div>
